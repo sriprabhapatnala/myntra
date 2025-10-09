@@ -10,16 +10,20 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/anithavalluri02/myntra.git'
-                sh 'ls -l'
             }
         }
 
+        stage('Bulid){
+              steps {
+                  sh 'mvn clean package'
+              }
+        }     
         stage('Build Docker Image') {
-            steps {
-                sh '''
-                  echo "Building Docker image..."
-                  docker build -t $DOCKERHUB_REPO:$IMAGE_TAG .
-                '''
+               steps {
+                    sh '''
+                     echo "Building Docker image..."
+                     docker build -t $DOCKERHUB_REPO:$IMAGE_TAG .
+                     '''
             }
         }
 
