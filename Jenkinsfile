@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_REPO = "anithavalluri/myntra"   // change to your DockerHub repo
+        DOCKERHUB_REPO = "prabha023/myntra"   // change to your DockerHub repo
         IMAGE_TAG = "v1"
     }
 
@@ -13,12 +13,7 @@ pipeline {
             }
         }
 
-        stage('Bulid){
-              steps {
-                  sh 'mvn clean package'
-              }
-        }     
-        stage('Build Docker Image') {
+         stage('Build Docker Image') {
                steps {
                     sh '''
                      echo "Building Docker image..."
